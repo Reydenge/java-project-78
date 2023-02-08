@@ -3,27 +3,27 @@ package hexlet.code.schemas;
 import java.util.function.Predicate;
 
 public class StringSchema extends BaseSchema {
-    public StringSchema required() {
+    public final StringSchema required() {
         this.checking = true;
         Predicate<Object> predicateRequired = x -> x instanceof String && !x.equals("");
         super.addPredicate(predicateRequired);
         return this;
     }
 
-    public StringSchema contains(String str) {
+    public final StringSchema contains(String str) {
         Predicate<Object> containedInPredicate = x -> x.toString().contains(str);
         super.addPredicate(containedInPredicate);
         return this;
     }
 
-    public StringSchema minLength(int minLength) {
+    public final StringSchema minLength(int minLength) {
         Predicate<Object> predicateLength = x -> x.toString().length() >= minLength;
         super.addPredicate(predicateLength);
         return this;
     }
 
     @Override
-    boolean isInvalid(Object object) {
+    public final boolean isInvalid(Object object) {
         return !(object instanceof String) || ((String) object).isEmpty();
     }
 }
