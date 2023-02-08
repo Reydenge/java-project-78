@@ -4,20 +4,20 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public class MapSchema extends BaseSchema {
-    public MapSchema required() {
+    public final MapSchema required() {
         this.checking = true;
         Predicate<Object> predicateChecking = x -> x instanceof Map;
         super.addPredicate(predicateChecking);
         return this;
     }
 
-    public MapSchema sizeof(int size) {
+    public final MapSchema sizeof(int size) {
         Predicate<Object> predicateSize = x -> ((Map<?, ?>) x).size() == size;
         super.addPredicate(predicateSize);
         return this;
     }
 
-    public MapSchema shape(Map<String, BaseSchema> schema) {
+    public final MapSchema shape(Map<String, BaseSchema> schema) {
         Predicate<Object> predicateShape = x -> shapeChecking(schema, (Map<?, ?>) x);
         this.addPredicate(predicateShape);
         return this;
@@ -34,7 +34,7 @@ public class MapSchema extends BaseSchema {
     }
 
     @Override
-    boolean isInvalid(Object object) {
+    public final boolean isInvalid(Object object) {
         return !(object instanceof Map) || (((Map<?, ?>) object).isEmpty());
     }
 }
