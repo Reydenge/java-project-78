@@ -20,7 +20,7 @@ public abstract class BaseSchema {
         return true;
     }
 
-    public void addPredicate(Predicate<Object> predicate) {
+    public final void addPredicate(Predicate<Object> predicate) {
         conditions.add(predicate);
     }
 
