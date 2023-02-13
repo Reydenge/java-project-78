@@ -5,9 +5,9 @@ import java.util.function.Predicate;
 
 public class MapSchema extends BaseSchema {
     public final MapSchema required() {
-        this.checking = true;
-        Predicate<Object> predicateChecking = x -> x instanceof Map;
-        super.addPredicate(predicateChecking);
+        this.isRequired = true;
+        Predicate<Object> predicateIsRequired = x -> x instanceof Map;
+        super.addPredicate(predicateIsRequired);
         return this;
     }
 
@@ -18,12 +18,12 @@ public class MapSchema extends BaseSchema {
     }
 
     public final MapSchema shape(Map<String, BaseSchema> schema) {
-        Predicate<Object> predicateShape = x -> shapeChecking(schema, (Map<?, ?>) x);
+        Predicate<Object> predicateShape = x -> shapeIsRequired(schema, (Map<?, ?>) x);
         this.addPredicate(predicateShape);
         return this;
     }
 
-    private boolean shapeChecking(Map<String, BaseSchema> schema, Map<?, ?> map) {
+    private boolean shapeIsRequired(Map<String, BaseSchema> schema, Map<?, ?> map) {
         for (Map.Entry<String, BaseSchema> mapEntry : schema.entrySet()) {
             String key = mapEntry.getKey();
             if (!map.containsKey(key) || !mapEntry.getValue().isValid(map.get(key))) {
