@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 public class StringSchema extends BaseSchema {
     public final StringSchema required() {
-        this.checking = true;
+        this.isRequired = true;
         Predicate<Object> predicateRequired = x -> x instanceof String && !x.equals("");
         super.addPredicate(predicateRequired);
         return this;
