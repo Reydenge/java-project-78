@@ -19,6 +19,7 @@ public class SchemaTest {
         StringSchema stringSchema = validator.string();
         String testFirstString = "what does the fox say";
         String testSecondString = "moon";
+        int testInteger = 29;
         int minLength = 5;
 
         assertTrue(stringSchema.isValid(""));
@@ -30,7 +31,7 @@ public class SchemaTest {
         assertTrue(stringSchema.isValid(testSecondString));
         assertFalse(stringSchema.isValid(""));
         assertFalse(stringSchema.isValid(null));
-        assertFalse(stringSchema.isValid(minLength));
+        assertFalse(stringSchema.isValid(testInteger));
 
         assertTrue(stringSchema.minLength(minLength).isValid(testFirstString));
         assertFalse(stringSchema.minLength(minLength).isValid(testSecondString));
