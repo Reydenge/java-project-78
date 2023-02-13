@@ -1,8 +1,6 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.function.Predicate;
 
 public abstract class BaseSchema {
