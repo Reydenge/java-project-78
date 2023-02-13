@@ -25,9 +25,5 @@ public abstract class BaseSchema {
         conditions.addFirst(predicate);
     }
 
-    public LinkedList<Predicate<Object>> getConditions() {
-        return conditions;
-    }
-
     abstract boolean isInvalid(Object object);
 }
